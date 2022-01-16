@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/thoughtful', {
   useUnifiedTopology: true
 });
 
-// Found this in other examples and thought it would be good to add.
+// Found this in other example and thought it would be good to add.
 // Logs mongo queries that are executed.
 mongoose.set('debug', true);
 
