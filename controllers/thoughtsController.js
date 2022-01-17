@@ -85,5 +85,3 @@ module.exports = {
       .catch((err) => res.json(err));
   },
 };
-
-module.exports = thoughtController;
