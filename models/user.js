@@ -1,51 +1,45 @@
-const { Schema, model } = require('mongoose');
-const moment = require('moment');
+const { Schema, model } = require("mongoose");
 
+const userSchema = new Schema(
+  {
+    username: { type: String, trim: true, unique: true, required: true },
 
-const UserSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email address']
-  },
-  thoughts: [
+    email: {
+      type: String,
+      match: /^([\da-z_.-]+)@([\da-z.-]+)\.([a-z]{2,6})$/,
+      unique: true,
+      required: true,
+    },
+
+    thoughts: [
       {
-          type: Schema.Types.ObjectId,
-          ref: 'Thought'
-      }
+        type: Schema.Types.ObjectId,
+        ref: "Thoughts",
+      },
     ],
-  friends: [
+
+    friends: [
       {
-          type: Schema.Types.ObjectId,
-          ref: 'User'
-      }
-  ]
+        type: Schema.Types.ObjectId,
+        ref: "Users",
+      },
+    ],
   },
-  { 
-  toJSON: {
-    virtuals: true,
-    getters: true
-  },
-  id: false
-}
+
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+  }
 );
 
-// This creates the User Model using the Schema
-const User = model('User', UserSchema);
-
-// This gets total count of comments and replies on retrieval
-UserSchema.virtual('friendCount').get(function() {
+// Create a virtual property to display the number of friends a user has
+userSchema.virtual("friendCount").get(function () {
   return this.friends.length;
 });
 
+// Initialize our User model
+const User = model("Users", userSchema);
 
-  // This exports the User model
 module.exports = User;
