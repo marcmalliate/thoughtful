@@ -14,7 +14,6 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      // uses moment
       get: (createdTime) => moment(createdTime).format("LLLL"),
     },
 

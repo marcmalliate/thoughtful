@@ -10,7 +10,7 @@ const {
   deleteFriend,
 } = require("../../controllers/userController");
 
-// api/users/, GET AND POST USERS
+// api/users/    To get and post users
 router.route("/").get(getUsers).post(createUser);
 
 // api/users/:id
