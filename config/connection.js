@@ -1,6 +1,7 @@
-const { connect, connection } = require('mongoose');
+const { connect, connection } = require("mongoose");
 
-const connectionString = process.env.MONGODB_URI || 'mongodb://localhost:27017/studentsDB';
+const connectionString =
+  process.env.MONGODB_URI || "mongodb://localhost:27017/ThoughtfulDB";
 
 connect(connectionString, {
   useNewUrlParser: true,

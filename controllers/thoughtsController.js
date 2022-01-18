@@ -90,6 +90,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
+  // Deletes a  reaction
   deleteReaction(req, res) {
     Thoughts.findOneAndUpdate(
       { _id: req.params.thoughtId },
